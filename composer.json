@@ -1,0 +1,20 @@
+{
+    "name": "neblabs/header-parser",
+    "description": "Parses header files from a php comment or md",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Neblabs\\HeaderParser\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "rafark",
+            "email": "rafarks@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "~8.2"
+    }
+}
