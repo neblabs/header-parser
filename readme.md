@@ -129,6 +129,55 @@ $data->boundaries->innerEndLine;   // (int) Ending line number
 
 ```
 
+## Boundaries
+
+0-based. Illustrated here inside brackets eg. [innerStart].
+
+### PHP
+```php
+
+$phpContent = <<<PHP
+<?php
+/*[innerStart]
+ [innerStartLine]* Plugin Name:       Coupons+
+ * Description:       Next-generation coupon offers engine for WooCommerce.
+ * Version:           1.0.0
+ * Author:            neblabs
+ [innerEndLine]* Text Domain:       coupons-plus
+ [innerEnd]*/
+PHP;
+
+$data->boundaries->innerStart;     // (int) Starting byte offset of header body
+$data->boundaries->innerEnd;       // (int) Ending byte offset of header body
+$data->boundaries->innerStartLine; // (int) Starting line number
+$data->boundaries->innerEndLine;   // (int) Ending line number
+
+```
+```php
+<?php
+
+use function Neblabs\HeaderParser\parse;
+
+$markdownContent = <<<MD
+=== Coupons+ ===[innerStart]
+[innerStartLine]Plugin Name:       Coupons+
+Description:       Next-generation coupon offers engine for WooCommerce.
+Version:           1.0.0
+[innerEndLine]Author:            neblabs[innerEnd]
+
+This description is outside of the header boundaries!
+MD;
+```
+
+```php
+
+$data->boundaries->innerStart;     // (int) Starting byte offset of header body
+$data->boundaries->innerEnd;       // (int) Ending byte offset of header body
+$data->boundaries->innerStartLine; // (int) Starting line number
+$data->boundaries->innerEndLine;   // (int) Ending line number
+
+```
+
 ## License
 
 The MIT License (MIT). Please see [License File](https://www.google.com/search?q=LICENSE) for more information.
