@@ -3,26 +3,6 @@
 namespace Neblabs\HeaderParser;
 
 /**
- * Memory-efficient generator that yields lines one by one,
- * preserving empty lines and correct line numbers.
- */
-function getLines(string $content): \Generator
-{
-    $offset = 0;
-    $length = strlen($content);
-
-    while ($offset < $length) {
-        $nextPos = strpos($content, "\n", $offset);
-        if ($nextPos === false) {
-            yield substr($content, $offset);
-            break;
-        }
-        yield substr($content, $offset, $nextPos - $offset);
-        $offset = $nextPos + 1;
-    }
-}
-
-/**
  * @param string $content The contents to parse
  */
 function parse(string $content, string $syntax): Data
@@ -36,6 +16,7 @@ function parse(string $content, string $syntax): Data
     }
 
     $startBoundaryInnerLine = false;
+    $startBoundaryInnerLineLength = 0;
     $endBoundaryInnerLine = false;
     $items = [];
 
@@ -46,6 +27,7 @@ function parse(string $content, string $syntax): Data
         if ($startBoundaryInnerLine === false) {
             if (strpos($line, $startBoundaryInner) !== false) {
                 $startBoundaryInnerLine = $lineNo;
+                $startBoundaryInnerLineLength = strlen($line);
             }
             continue; // Keep scanning until inner boundary is reached
         }
@@ -76,10 +58,30 @@ function parse(string $content, string $syntax): Data
     return new Data(
         values: $items,
         boundaries: new Boundaries(
-            innerStart: strpos($content, $startBoundaryInner) + strlen($startBoundaryInner),
+            innerStart: ($syntax === 'php') ? (strpos($content, $startBoundaryInner) + strlen($startBoundaryInner)) : (strpos($content, $startBoundaryInner) + $startBoundaryInnerLineLength),
             innerEnd: strpos($content, $endBoundaryInner),
             innerStartLine: $startBoundaryInnerLine,
             innerEndLine: $endBoundaryInnerLine,
         )
     );
+}
+
+/**
+ * Memory-efficient generator that yields lines one by one,
+ * preserving empty lines and correct line numbers.
+ */
+function getLines(string $content): \Generator
+{
+    $offset = 0;
+    $length = strlen($content);
+
+    while ($offset < $length) {
+        $nextPos = strpos($content, "\n", $offset);
+        if ($nextPos === false) {
+            yield substr($content, $offset);
+            break;
+        }
+        yield substr($content, $offset, $nextPos - $offset);
+        $offset = $nextPos + 1;
+    }
 }

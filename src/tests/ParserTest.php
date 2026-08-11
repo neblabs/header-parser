@@ -65,7 +65,7 @@ MD;
 
         $data = parse($md, 'md');
         $this->assertEquals($this->expects, $data->values);
-        $this->assertSame(3, $data->boundaries->innerStart);
+        $this->assertSame(16, $data->boundaries->innerStart);
         $this->assertSame(398, $data->boundaries->innerEnd);
         $this->assertSame(0, $data->boundaries->innerStartLine);
         $this->assertSame(10, $data->boundaries->innerEndLine);
