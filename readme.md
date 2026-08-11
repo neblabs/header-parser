@@ -181,4 +181,4 @@ $data->boundaries->innerEndLine;   // (int) Ending line number
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://www.google.com/search?q=LICENSE) for more information.
+The MIT License (MIT).
