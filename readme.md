@@ -8,10 +8,11 @@ In addition to extracting key-value header metadata, it tracks exact byte offset
 
 ## Features
 
+* **Memory efficient** Does not load the whole content into an array of lines.
 * **PHP Block Comment Parsing:** Extracts `Key: Value` metadata from multi-line `/* ... */` comment blocks.
 * **Markdown Header Parsing:** Parses metadata blocks starting with a heading (`=== ... ===`) up to double line breaks.
 * **Boundary Tracking:** Returns exact start/end byte offsets (`innerStart`, `innerEnd`) and 0-indexed line numbers (`innerStartLine`, `innerEndLine`).
-* **Flexible Keys:** Supports custom arbitrary key names and structures including spaces, dashes, and underscores.
+* **Flexible Keys:** Supports custom arbitrary key names with varying structures including spaces, dashes, and underscores.
 
 ---
 

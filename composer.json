@@ -1,6 +1,6 @@
 {
     "name": "neblabs/header-parser",
-    "description": "Parses header files from a php comment or md",
+    "description": "Parses wordpress-style header files from a php block comment or a markdown (md) block",
     "type": "library",
     "license": "MIT",
     "autoload": {
