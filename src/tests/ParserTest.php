@@ -42,8 +42,8 @@ COMMENTS;
         $this->assertEquals($this->expects, $data->values);
         $this->assertSame(111, $data->boundaries->innerStart);
         $this->assertSame(522, $data->boundaries->innerEnd);
-        $this->assertSame(4, $data->boundaries->innerStartLine);
-        $this->assertSame(14, $data->boundaries->innerEndLine);
+        $this->assertSame(5, $data->boundaries->innerStartLine);
+        $this->assertSame(13, $data->boundaries->innerEndLine);
     }
 
     public function test_markdown()
@@ -67,7 +67,7 @@ MD;
         $this->assertEquals($this->expects, $data->values);
         $this->assertSame(16, $data->boundaries->innerStart);
         $this->assertSame(398, $data->boundaries->innerEnd);
-        $this->assertSame(0, $data->boundaries->innerStartLine);
-        $this->assertSame(10, $data->boundaries->innerEndLine);
+        $this->assertSame(1, $data->boundaries->innerStartLine);
+        $this->assertSame(9, $data->boundaries->innerEndLine);
     }
 }

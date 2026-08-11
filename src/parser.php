@@ -60,8 +60,8 @@ function parse(string $content, string $syntax): Data
         boundaries: new Boundaries(
             innerStart: ($syntax === 'php') ? (strpos($content, $startBoundaryInner) + strlen($startBoundaryInner)) : (strpos($content, $startBoundaryInner) + $startBoundaryInnerLineLength),
             innerEnd: strpos($content, $endBoundaryInner),
-            innerStartLine: $startBoundaryInnerLine,
-            innerEndLine: $endBoundaryInnerLine,
+            innerStartLine: $startBoundaryInnerLine + 1,
+            innerEndLine: $endBoundaryInnerLine - 1,
         )
     );
 }
