@@ -8,7 +8,7 @@ In addition to extracting key-value header metadata, it tracks exact byte offset
 
 ## Features
 
-* **Memory efficient** Does not load the whole content into an array of lines.
+* **Memory efficient**: Does not load the whole content into an array of lines.
 * **PHP Block Comment Parsing:** Extracts `Key: Value` metadata from multi-line `/* ... */` comment blocks.
 * **Markdown Header Parsing:** Parses metadata blocks starting with a heading (`=== ... ===`) up to double line breaks.
 * **Boundary Tracking:** Returns exact start/end byte offsets (`innerStart`, `innerEnd`) and 0-indexed line numbers (`innerStartLine`, `innerEndLine`).
@@ -131,7 +131,7 @@ $data->boundaries->innerEndLine;   // (int) Ending line number
 
 ## Boundaries
 
-0-based. Illustrated here inside brackets eg. [innerStart].
+0-based from the beginning of the given string. Illustrated here inside brackets eg. [innerStart].
 
 ### PHP
 ```php
